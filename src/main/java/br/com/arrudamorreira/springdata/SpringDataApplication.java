@@ -7,18 +7,21 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.arrudamorreira.springdata.service.CrudCargoService;
+import br.com.arrudamorreira.springdata.service.CrudUnidadeService;
 
 @SpringBootApplication
-public class SpringDataApplication implements CommandLineRunner{
-	
+public class SpringDataApplication implements CommandLineRunner {
+
 	private Boolean system = true;
-	
+
 	private final CrudCargoService crudCargoService;
-	
-	public SpringDataApplication(CrudCargoService crudCargoService) {
+	private final CrudUnidadeService crudUnidadeService;
+
+	public SpringDataApplication(CrudCargoService crudCargoService, CrudUnidadeService crudUnidadeService) {
 		this.crudCargoService = crudCargoService;
+		this.crudUnidadeService = crudUnidadeService;
 	}
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringDataApplication.class, args);
 	}
@@ -26,17 +29,28 @@ public class SpringDataApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		Scanner scanner = new Scanner(System.in);
-		
+
 		while (system) {
 			System.out.println("Qual acao voce quer executar");
 			System.out.println("0 - Sair");
 			System.out.println("1 - Cargo");
-			
+			System.out.println("2 - Unidade");
+			System.out.println("3 - Funcionario");
+
 			int action = scanner.nextInt();
-			if(action == 1) {
+			switch (action) {
+			case 1:
 				crudCargoService.inicial(scanner);
-			}else {
+				break;
+			case 2:
+				crudUnidadeService.inicial(scanner);
+				break;
+			case 3:
+
+				break;
+			default:
 				system = false;
+				break;
 			}
 		}
 	}
