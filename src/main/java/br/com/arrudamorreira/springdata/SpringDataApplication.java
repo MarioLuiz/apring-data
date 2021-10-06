@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.arrudamorreira.springdata.service.CrudCargoService;
+import br.com.arrudamorreira.springdata.service.CrudFuncionarioService;
 import br.com.arrudamorreira.springdata.service.CrudUnidadeService;
 
 @SpringBootApplication
@@ -16,10 +17,12 @@ public class SpringDataApplication implements CommandLineRunner {
 
 	private final CrudCargoService crudCargoService;
 	private final CrudUnidadeService crudUnidadeService;
+	private final CrudFuncionarioService crudFuncionarioService;
 
-	public SpringDataApplication(CrudCargoService crudCargoService, CrudUnidadeService crudUnidadeService) {
+	public SpringDataApplication(CrudCargoService crudCargoService, CrudUnidadeService crudUnidadeService, CrudFuncionarioService crudFuncionarioService) {
 		this.crudCargoService = crudCargoService;
 		this.crudUnidadeService = crudUnidadeService;
+		this.crudFuncionarioService = crudFuncionarioService;
 	}
 
 	public static void main(String[] args) {
@@ -46,7 +49,7 @@ public class SpringDataApplication implements CommandLineRunner {
 				crudUnidadeService.inicial(scanner);
 				break;
 			case 3:
-
+				crudFuncionarioService.inicial(scanner);
 				break;
 			default:
 				system = false;

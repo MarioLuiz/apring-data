@@ -3,6 +3,7 @@ package br.com.arrudamorreira.springdata.orm;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,32 +12,35 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+@Entity
+@Table(name = "funcionarios")
 public class Funcionario {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String nome;
-	
+
 	private String cpf;
-	
-	private Double salaraio;
-	
-	private LocalDate dataDeContratacao;
-	
+
+	private Double salario;
+
+	private LocalDate dataContratacao;
+
 	@ManyToOne
 	@JoinColumn(name = "cargo_id", nullable = false)
 	private Cargo cargo;
-	
+
 	@Fetch(FetchMode.SELECT)
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "funcionarios_unidades", joinColumns = {@JoinColumn(name="fk_funcionario")}, 
-	 inverseJoinColumns = {@JoinColumn(name= "fk_unidade") })
+	@JoinTable(name = "funcionarios_unidades", joinColumns = {
+			@JoinColumn(name = "fk_funcionario") }, inverseJoinColumns = { @JoinColumn(name = "fk_unidade") })
 	private List<Unidade> unidades;
 
 	public Integer getId() {
@@ -63,20 +67,20 @@ public class Funcionario {
 		this.cpf = cpf;
 	}
 
-	public Double getSalaraio() {
-		return salaraio;
+	public Double getSalario() {
+		return salario;
 	}
 
-	public void setSalaraio(Double salaraio) {
-		this.salaraio = salaraio;
+	public void setSalario(Double salario) {
+		this.salario = salario;
 	}
 
-	public LocalDate getDataDeContratacao() {
-		return dataDeContratacao;
+	public LocalDate getDataContratacao() {
+		return dataContratacao;
 	}
 
-	public void setDataDeContratacao(LocalDate dataDeContratacao) {
-		this.dataDeContratacao = dataDeContratacao;
+	public void setDataContratacao(LocalDate dataContratacao) {
+		this.dataContratacao = dataContratacao;
 	}
 
 	public Cargo getCargo() {
@@ -97,7 +101,7 @@ public class Funcionario {
 
 	@Override
 	public String toString() {
-		return "Funcionario [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", salaraio=" + salaraio
-				+ ", dataDeContratacao=" + dataDeContratacao + ", cargo=" + cargo + ", unidades=" + unidades + "]";
+		return "Funcionario [id = " + id + ", nome =" + nome + ", cpf = " + cpf + ", salario = " + salario
+				+ ", dataContratacao = " + dataContratacao + ", cargo = " + cargo + ", unidades =" + unidades + "]";
 	}
 }
