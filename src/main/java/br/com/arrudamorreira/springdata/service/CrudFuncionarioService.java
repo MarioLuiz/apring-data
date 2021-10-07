@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.arrudamorreira.springdata.orm.Cargo;
@@ -79,7 +77,7 @@ public class CrudFuncionarioService {
         System.out.println("Digite o salario");
         Double salario = scanner.nextDouble();
 
-        System.out.println("Digite a data de contracao");
+        System.out.println("Digite a data de contracao(dd/mm/yyy): ");
         String dataContratacao = scanner.next();
 
         System.out.println("Digite o cargoId");
