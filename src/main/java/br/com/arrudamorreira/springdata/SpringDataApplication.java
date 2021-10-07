@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.com.arrudamorreira.springdata.service.CrudCargoService;
 import br.com.arrudamorreira.springdata.service.CrudFuncionarioService;
 import br.com.arrudamorreira.springdata.service.CrudUnidadeService;
+import br.com.arrudamorreira.springdata.service.RelatoriosService;
 
 @SpringBootApplication
 public class SpringDataApplication implements CommandLineRunner {
@@ -18,11 +19,13 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final CrudCargoService crudCargoService;
 	private final CrudUnidadeService crudUnidadeService;
 	private final CrudFuncionarioService crudFuncionarioService;
+	private final RelatoriosService relatoriosService;
 
-	public SpringDataApplication(CrudCargoService crudCargoService, CrudUnidadeService crudUnidadeService, CrudFuncionarioService crudFuncionarioService) {
+	public SpringDataApplication(CrudCargoService crudCargoService, CrudUnidadeService crudUnidadeService, CrudFuncionarioService crudFuncionarioService, RelatoriosService relatoriosService) {
 		this.crudCargoService = crudCargoService;
 		this.crudUnidadeService = crudUnidadeService;
 		this.crudFuncionarioService = crudFuncionarioService;
+		this.relatoriosService = relatoriosService;
 	}
 
 	public static void main(String[] args) {
@@ -39,6 +42,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("1 - Cargo");
 			System.out.println("2 - Unidade");
 			System.out.println("3 - Funcionario");
+			System.out.println("4 - Relatorios");
 
 			int action = scanner.nextInt();
 			switch (action) {
@@ -50,6 +54,9 @@ public class SpringDataApplication implements CommandLineRunner {
 				break;
 			case 3:
 				crudFuncionarioService.inicial(scanner);
+				break;
+			case 4:
+				relatoriosService.inicial(scanner);
 				break;
 			default:
 				system = false;
