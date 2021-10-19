@@ -72,19 +72,19 @@ public class CrudFuncionarioService {
 	}
 	
 	private void salvar(Scanner scanner) {
-		System.out.println("Digite o nome");
+		System.out.print("Digite o nome: ");
         String nome = scanner.next();
 
-        System.out.println("Digite o cpf");
+        System.out.print("Digite o cpf: ");
         String cpf = scanner.next();
 
-        System.out.println("Digite o salario");
+        System.out.print("Digite o salario: ");
         Double salario = scanner.nextDouble();
 
-        System.out.println("Digite a data de contracao(dd/mm/yyy): ");
+        System.out.print("Digite a data de contracao(dd/mm/yyyy): ");
         String dataContratacao = scanner.next();
 
-        System.out.println("Digite o cargoId");
+        System.out.print("Digite o cargoId");
         Integer cargoId = scanner.nextInt();
 
         List<Unidade> unidades = unidade(scanner);
@@ -134,7 +134,7 @@ public class CrudFuncionarioService {
         System.out.println("Digite o salario");
         Double salario = scanner.nextDouble();
 
-        System.out.println("Digite a data de contracao");
+        System.out.println("Digite a data de contracao (dd/mm/yyyy)");
         String dataContratacao = scanner.next();
 
         System.out.println("Digite o cargoId");
@@ -158,7 +158,7 @@ public class CrudFuncionarioService {
 		System.out.println("Digite a pagina que deseja visualizar: ");
         Integer page = scanner.nextInt();
         
-        Pageable pageable = PageRequest.of(page, 1, Sort.unsorted());
+        Pageable pageable = PageRequest.of(page, 2, Sort.by(Sort.Direction.ASC, "nome"));
 		
 		Page<Funcionario> funcionarios = funcionarioRepository.findAll(pageable);
 		
