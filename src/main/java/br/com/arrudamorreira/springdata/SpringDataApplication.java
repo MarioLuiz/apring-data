@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.com.arrudamorreira.springdata.service.CrudCargoService;
 import br.com.arrudamorreira.springdata.service.CrudFuncionarioService;
 import br.com.arrudamorreira.springdata.service.CrudUnidadeService;
+import br.com.arrudamorreira.springdata.service.RelatorioFuncionarioDinamico;
 import br.com.arrudamorreira.springdata.service.RelatoriosService;
 
 @SpringBootApplication
@@ -20,12 +21,15 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final CrudUnidadeService crudUnidadeService;
 	private final CrudFuncionarioService crudFuncionarioService;
 	private final RelatoriosService relatoriosService;
+	private final RelatorioFuncionarioDinamico relatorioFuncionarioDinamico;
 
-	public SpringDataApplication(CrudCargoService crudCargoService, CrudUnidadeService crudUnidadeService, CrudFuncionarioService crudFuncionarioService, RelatoriosService relatoriosService) {
+	public SpringDataApplication(CrudCargoService crudCargoService, CrudUnidadeService crudUnidadeService, CrudFuncionarioService crudFuncionarioService, RelatoriosService relatoriosService,
+			RelatorioFuncionarioDinamico relatorioFuncionarioDinamico) {
 		this.crudCargoService = crudCargoService;
 		this.crudUnidadeService = crudUnidadeService;
 		this.crudFuncionarioService = crudFuncionarioService;
 		this.relatoriosService = relatoriosService;
+		this.relatorioFuncionarioDinamico = relatorioFuncionarioDinamico;
 	}
 
 	public static void main(String[] args) {
@@ -43,6 +47,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("2 - Unidade");
 			System.out.println("3 - Funcionario");
 			System.out.println("4 - Relatorios");
+			System.out.println("5 - Relatorio funcionario dinamico");
 
 			int action = scanner.nextInt();
 			switch (action) {
@@ -57,6 +62,9 @@ public class SpringDataApplication implements CommandLineRunner {
 				break;
 			case 4:
 				relatoriosService.inicial(scanner);
+				break;
+			case 5:
+				relatorioFuncionarioDinamico.inicial(scanner);
 				break;
 			default:
 				system = false;
